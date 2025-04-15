@@ -8,7 +8,10 @@
 //prompt the user to enter amount in U.S. dollars or Chinese RMB to convert it to //Chinese RMB or U.S. dollars
 //using conditional statement 
 //if user input is equal 0 print amount in Chinese RMB
+//print exchange amount in U.S. dollars
 //else if user enter 1 print amount in U.S. dollars
+//print exchange amount in Chinese RMB
+//else print "Try again!!"
 //end class
 
 
@@ -23,9 +26,7 @@ public class CurrencyExchange {
 
 	if(rate < 0) {
 	System.out.println("TRY AGAIN!!");
-} 	set = 0;
-	end if (rate > 0);
-
+}	else
 	System.out.print("Enter (0) to convert to RMB and (1) to U.S. dollars: ");
 	double num = input.nextDouble();
 	
