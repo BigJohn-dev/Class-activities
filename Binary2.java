@@ -23,7 +23,7 @@ public class Binary2 {
 	System.out.print(numb1);
 	System.out.print(numb2);
 
-	if(numb2 % 2 == 1 || numb2 % 2 == 0 ) {
+	if(numb2 % 2 == 1 && numb2 % 2 == 1) {
 	int num3 = num / 2;
 	int numb3 = (num / 2) % 2;
 	System.out.print(numb3);
