@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class HighestScore {
+	public static void main(String[] args) {
+	Scanner input = new Scanner(System.in);
+
+
+	
+	System.out.print("Enter number of Students: ");
+	int num = input.nextInt();
+
+	while (num <= num) {
+	System.out.print("Enter Student's name:");
+	String name = input.nextLine();
+
+	System.out.print("Enter Student grade: ");
+	grade = input.nextInt();
+	
+
+}
+
+
+
+}
+
+
+
+}
