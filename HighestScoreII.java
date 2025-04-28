@@ -28,7 +28,9 @@ public class HighestScoreII {
 }	else if (grade != largest) {
 	largest = secLargest;
 	secLargest = grade;
-	name +=;
+
+}	else if (grade == secLargest) {
+	name += name;
 }
 
 	count++;

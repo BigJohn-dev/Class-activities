@@ -4,19 +4,12 @@ public class Binary {
 	public static void main(String[] args) {
 	Scanner input = new Scanner(System.in);
 
-	String binary = " ";
-
 	System.out.print("Enter a number: ");
-	int num = input.nextInt();
+	int number = input.nextInt();
 
-	if (num = 0) {
-	binary = "0";
-
-}	else {
-	while (num % 2 = )
-
-}
-
+	String num = Integer.toBinaryString(number);
+	
+	System.out.println(number + " to binary is " + num);
 
 	
 }
