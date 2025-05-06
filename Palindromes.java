@@ -4,13 +4,20 @@ public class Palindromes {
 	public static void main(String[] args) {
 	Scanner input = new Scanner(System.in);
 
-
 	System.out.print("Enter a number: ");
-	String num = input.nextLine();
+	int number = input.nextInt();
 
-	String numb = (String)num;
+	int temp = 0;
+	int reverse = 0;
 
-	if (num == num) {
+	do {
+	number = number * 10 + reverse;
+	temp = reverse % 10;
+	reverse = reverse / 10;
+}
+	while(temp != 0);
+
+	if (temp == reverse) {
 	System.out.print("Its a Palindrome");
 
 }	else {
@@ -20,3 +27,9 @@ public class Palindromes {
 }
 
 }
+
+
+
+
+
+
