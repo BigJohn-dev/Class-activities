@@ -1,20 +1,33 @@
 public class arrayOfArrays {
 	public static void main(String[] args) {
 
-	char [][] array = new char [3][3];
+		char [][] array = new char [3][3];
 
-	char[][] letters = {{'X', 'O', 'X'}, {'O', 'O', 'O'}, {'X', 'X', 'O'}};
+		char[][] letters = {{'X', 'O', 'X'}, {'O', 'O', 'O'}, {'X', 'X', 'O'}};
 
-	for (int i = 0; i < letters.length; ++i) {
-		for(int j = i; j < letters.length; ++j) {
+		for (int rows = 0; rows < letters.length; ++rows) {
+			for(int colums = 0; colums < letters[rows].length; colums++) {
 
-	System.out.print(letters[j][j] + " ");
-}
-	System.out.println(letters[i][i] + " ");
-}
+				System.out.print(letters[rows][colums] + " ");
+
+			}
+			System.out.println();
+		}
 
 
+		
 
+		/*for(char rows[] : letters) {
+			for (char each : rows) {
+
+				System.out.print(each);
+
+
+			}
+			System.out.println();
+
+
+		}*/
 
 
 
