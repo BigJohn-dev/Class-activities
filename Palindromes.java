@@ -7,7 +7,7 @@ public class Palindromes {
 	System.out.print("Enter a number: ");
 	int number = input.nextInt();
 
-	int temp = 0;
+	int temp = number;
 	int reverse = 0;
 
 	do {
