@@ -1,0 +1,16 @@
+public class returnUnique {
+	
+	public static string returnUniqueValue(int[] numbers)  {
+
+	for (int count = 0; count < number.length; count++) {
+	System.out.println(number[count]);
+
+		for(int counter = 00; counter < number.length; counter++);
+
+}
+	
+
+}
+
+
+"
