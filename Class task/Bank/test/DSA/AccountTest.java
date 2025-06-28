@@ -38,6 +38,13 @@ public class AccountTest {
     }
 
     @Test
+    public void notToDepositZeroAmount() {
+        assertEquals(0.0, johnAccount.getBalance());
+        double depositZeroAmount = johnAccount.deposit(0);
+        assertEquals(0.0, depositZeroAmount);
+    }
+
+    @Test
     public void withdrawMoney() {
         double depositMoney = johnAccount.deposit(5000);
         assertEquals(5000.0, depositMoney);
@@ -47,9 +54,18 @@ public class AccountTest {
 
     @Test
     public void notToWithdrawNegativeMoney() {
-        assertEquals(0.0, johnAccount.getBalance());
-        double withdrawNegativeAmount = johnAccount.deposit(-3000);
-        assertEquals(0.0, withdrawNegativeAmount);
+        double depositMoney = johnAccount.deposit(3000);
+        assertEquals(3000.0, johnAccount.getBalance());
+        double withdrawNegativeAmount = johnAccount.deposit(-2000);
+        assertEquals(3000.0, withdrawNegativeAmount);
+    }
+
+    @Test
+    public void notToWithdrawZeroAmount() {
+        double depositZeroAmount = johnAccount.deposit(3000);
+        assertEquals(3000.0, johnAccount.getBalance());
+        double withdrawZeroAmount = johnAccount.withdraw(0);
+        assertEquals(3000.0, withdrawZeroAmount);
     }
 
     @Test
@@ -62,35 +78,83 @@ public class AccountTest {
 
     @Test
     public void transferMoney() {
-    double depositMoney = johnAccount.deposit(5000);
-    assertEquals(5000.0, depositMoney);
-    double transferMoney = johnAccount.transfer(3000);
-    assertEquals(2000.0, transferMoney);
+        double depositMoney = johnAccount.deposit(5000);
+        Account janeAccount = new Account("Jane", 0.0, "2211", "1234567890");
+
+        String transferSuccess = johnAccount.transfer(janeAccount, 3000);
+
+        assertEquals(2000.0, johnAccount.getBalance());
+        assertEquals(3000.0, janeAccount.getBalance());
     }
+
 
     @Test
     public void notToTransferNegativeAmount(){
-        double despositMoney = johnAccount.deposit(5000);
-        assertEquals(5000.0, despositMoney);
-        double transferNegativeMoney = johnAccount.transfer(-3000);
-        assertEquals(5000.0, transferNegativeMoney);
+        double depositMoney = johnAccount.deposit(5000);
+        Account janeAccount = new Account("Jane", 2000.0, "2211", "1234567890");
+
+        String transferSuccess = johnAccount.transfer(janeAccount, -2000);
+
+        assertEquals(5000.0, johnAccount.getBalance());
+        assertEquals(2000.0, janeAccount.getBalance());
     }
 
     @Test
     public void notToTransferAmountGreaterThanBalance() {
-    double despositMoney = johnAccount.deposit(5000);
-    assertEquals(5000.0, despositMoney);
-    double transferMoney = johnAccount.transfer(10_000);
-    assertEquals(5000.0, transferMoney);
+        double depositMoney = johnAccount.deposit(5000);
+        Account janeAccount = new Account("Jane", 0.0, "2211", "1234567890");
+
+        String transferSuccess = johnAccount.transfer(janeAccount, 7000);
+
+        assertEquals(5000.0, johnAccount.getBalance());
+        assertEquals(0.0, janeAccount.getBalance());
     }
 
     @Test
-    public void createAccountTest() {
-        johnAccount.createAccount("John", "1122", "0987654321");
-        assertEquals("John", johnAccount.createAccount());
-        assertEquals("1122", johnAccount.createAccount());
-        assertEquals("0987654321", johnAccount.createAccount());
-        
+    public void notToTransferZeroAmount() {
+        double depositMoney = johnAccount.deposit(5000);
+        Account janeAccount = new Account("Jane", 0.0, "2211", "1234567890");
 
+        String transferSuccess = johnAccount.transfer(janeAccount, 0.0);
+
+        assertEquals(5000.0, johnAccount.getBalance());
+        assertEquals(0.0, janeAccount.getBalance());
     }
+
+    @Test
+    public void toCreateValidAccount() {
+        Account janeAccount = new Account("Jane", 0.0, "2211", "1234567890");
+
+        assertEquals("Jane", janeAccount.getName());
+        assertEquals(0.0, janeAccount.getBalance());
+        assertEquals("2211", janeAccount.getPassword());
+        assertEquals("1234567890", janeAccount.getAccountNumber());
+    }
+
+    @Test
+    public void shouldHandleNullOrEmptyName() {
+        Account account = new Account(null, 0.0, "2211", "1234567890");
+        assertNull(account.getName());
+    }
+
+    @Test
+    public void shouldHandleNullOrEmptyPassword() {
+        Account account = new Account("Jane", 0.0, null, "1234567890");
+        assertNull(account.getPassword());
+    }
+
+    @Test
+    public void shouldHandleNullOrEmptyAccountNumber() {
+        Account account = new Account(null, 0.0, "2211", null);
+        assertNull(account.getAccountNumber());
+    }
+
+    @Test
+    public void cannotCreateAccountWithSameAccountNumber() {
+        Account account = new Account(null, 0.0, "2211", "1234567890");
+        Account account2 = new Account("Jane", 0.0, "2211", "1234567890");
+        assertEquals(account.getAccountNumber(), account2.getAccountNumber());
+    }
+
+
 }
