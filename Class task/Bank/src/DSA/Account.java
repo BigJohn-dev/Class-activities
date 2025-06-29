@@ -7,7 +7,7 @@ public class Account {
     private String accountNumber;
     private String name;
 
-    public Account(String name, double balance, String password, String accountNumber) {
+    public Account(String name, String password, String accountNumber, double balance) {
         this.name = name;
         this.balance = balance;
         this.password = password;
@@ -50,13 +50,18 @@ public class Account {
     }
 
     public Account createAccount(String name, String password, String accountNumber) {
-        if (name == null || password == null || accountNumber == null) {
-            return null;
-        } else {
-            if (accountNumber.equals(this.getAccountNumber())) {
-                return null;
-            }
+        if (name == null || password == null || accountNumber == null) return null;
+        else
+            if (accountNumber.equals(this.getAccountNumber())) return null;
+        return new Account(name, password, accountNumber, 0.0);
+    }
+
+    public Account loginToAccount(String accountNumber, String password) {
+        if (accountNumber.equals(this.accountNumber) && password.equals(this.password)) {
+            return new Account(name, password, accountNumber, 0.0);
+        } else{
+            if(accountNumber.equals(" ") || password.equals(" ")) return null;
         }
-        return new Account(name, 0.0, password, accountNumber);
+        return null;
     }
 }
